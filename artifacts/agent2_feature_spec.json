@@ -1,0 +1,250 @@
+{
+  "schema_version": "v1",
+  "agent": "feature_engineering",
+  "status": "ok",
+  "quality_score": 85,
+  "ready_for_ml": true,
+  "inputs": {
+    "batch_id": ""
+  },
+  "enrichments_applied": [
+    "pep_normalized flag derived from kyc_profiles.pep column",
+    "mcc_risk_bucket derived from transactions.mcc and merchants.mcc_risk",
+    "cross_border_flag derived from transactions.sender_country and transactions.receiver_country"
+  ],
+  "feature_pack": {
+    "transaction_features": [
+      {
+        "name": "amount_brl",
+        "dtype": "float64",
+        "definition": "Monetary amount in BRL for the transaction",
+        "source_cols": [
+          "transactions.amount_brl"
+        ]
+      },
+      {
+        "name": "rail_channel_status",
+        "dtype": "string",
+        "definition": "Concatenation of rail/payment channel and status of the transaction",
+        "source_cols": [
+          "transactions.channel",
+          "transactions.status"
+        ]
+      },
+      {
+        "name": "income_ratio",
+        "dtype": "float64",
+        "definition": "Ratio of transaction amount (amount_brl) to monthly income (annual_income_brl / 12) of the sender",
+        "source_cols": [
+          "transactions.amount_brl",
+          "kyc_profiles.annual_income_brl"
+        ]
+      },
+      {
+        "name": "velocity_count_30m",
+        "dtype": "integer",
+        "definition": "Count of transactions by the sender in the last 30 minutes from the current transaction timestamp",
+        "source_cols": [
+          "transactions.sender_id",
+          "transactions.timestamp",
+          "transactions.transaction_id"
+        ]
+      },
+      {
+        "name": "structuring_7d_count",
+        "dtype": "integer",
+        "definition": "Count of transactions by sender in last 7 days with amount_brl between 9500 and 10000 (indicative of structuring)",
+        "source_cols": [
+          "transactions.sender_id",
+          "transactions.timestamp",
+          "transactions.amount_brl"
+        ]
+      },
+      {
+        "name": "distinct_counterparties_7d",
+        "dtype": "integer",
+        "definition": "Count of distinct receiver_id counterparties transacted with in the last 7 days",
+        "source_cols": [
+          "transactions.sender_id",
+          "transactions.receiver_id",
+          "transactions.timestamp"
+        ]
+      },
+      {
+        "name": "ecommerce_no_3ds_flag",
+        "dtype": "boolean",
+        "definition": "Flag indicating if ecommerce transaction without 3DS authentication was attempted",
+        "source_cols": [
+          "transactions.channel",
+          "transactions.auth_3ds",
+          "transactions.eci"
+        ]
+      },
+      {
+        "name": "pep_normalized",
+        "dtype": "boolean",
+        "definition": "Normalized flag indicating if sender or receiver is a Politically Exposed Person (PEP) based on KYC data",
+        "source_cols": [
+          "kyc_profiles.pep"
+        ]
+      },
+      {
+        "name": "mcc_risk_bucket",
+        "dtype": "string",
+        "definition": "Categorical risk bucket code derived from the MCC code risk level for the transaction merchant",
+        "source_cols": [
+          "transactions.mcc",
+          "merchants.mcc_risk"
+        ]
+      },
+      {
+        "name": "cross_border_flag",
+        "dtype": "boolean",
+        "definition": "Flag indicating cross-border transaction where sender and receiver countries differ or IP country mismatch",
+        "source_cols": [
+          "transactions.sender_country",
+          "transactions.receiver_country",
+          "transactions.ip_country"
+        ]
+      }
+    ],
+    "entity_features": {
+      "customer": [
+        {
+          "name": "tx_count_7d",
+          "dtype": "integer",
+          "definition": "Total number of transactions by customer in last 7 days",
+          "source_cols": [
+            "transactions.sender_id",
+            "transactions.timestamp"
+          ]
+        },
+        {
+          "name": "tx_sum_7d",
+          "dtype": "float64",
+          "definition": "Sum of amount_brl of transactions by customer in last 7 days",
+          "source_cols": [
+            "transactions.sender_id",
+            "transactions.timestamp",
+            "transactions.amount_brl"
+          ]
+        },
+        {
+          "name": "distinct_merchants_7d",
+          "dtype": "integer",
+          "definition": "Count of distinct merchants the customer transacted within last 7 days",
+          "source_cols": [
+            "transactions.sender_id",
+            "transactions.mcc",
+            "merchants.merchant_id",
+            "transactions.timestamp"
+          ]
+        },
+        {
+          "name": "distinct_devices_7d",
+          "dtype": "integer",
+          "definition": "Count of distinct device_fingerprint used by customer in last 7 days",
+          "source_cols": [
+            "transactions.sender_id",
+            "transactions.device_fingerprint",
+            "transactions.timestamp"
+          ]
+        }
+      ],
+      "merchant": [
+        {
+          "name": "tx_count_7d",
+          "dtype": "integer",
+          "definition": "Total number of transactions for the merchant in last 7 days",
+          "source_cols": [
+            "transactions.mcc",
+            "transactions.timestamp",
+            "merchants.merchant_id"
+          ]
+        },
+        {
+          "name": "distinct_customers_7d",
+          "dtype": "integer",
+          "definition": "Count of distinct customers transacting with merchant in last 7 days",
+          "source_cols": [
+            "transactions.sender_id",
+            "transactions.mcc",
+            "merchants.merchant_id",
+            "transactions.timestamp"
+          ]
+        },
+        {
+          "name": "chargeback_rate",
+          "dtype": "float64",
+          "definition": "Ratio of merchant chargebacks in last 90 days to total transactions (merchant_chargeback_ratio_90d)",
+          "source_cols": [
+            "merchants.merchant_chargeback_ratio_90d"
+          ]
+        }
+      ],
+      "device": [
+        {
+          "name": "distinct_customers_7d",
+          "dtype": "integer",
+          "definition": "Count of distinct customers using the device in last 7 days",
+          "source_cols": [
+            "transactions.device_fingerprint",
+            "transactions.sender_id",
+            "transactions.timestamp"
+          ]
+        }
+      ],
+      "ip": [
+        {
+          "name": "distinct_customers_7d",
+          "dtype": "integer",
+          "definition": "Count of distinct customers from the IP address in last 7 days",
+          "source_cols": [
+            "transactions.ip_address",
+            "transactions.sender_id",
+            "transactions.timestamp"
+          ]
+        }
+      ]
+    }
+  },
+  "feature_coverage": {
+    "amount_brl": 100,
+    "rail_channel_status": 98,
+    "income_ratio": 48,
+    "velocity_count_30m": 95,
+    "structuring_7d_count": 90,
+    "distinct_counterparties_7d": 94,
+    "ecommerce_no_3ds_flag": 58,
+    "pep_normalized": 100,
+    "mcc_risk_bucket": 92,
+    "cross_border_flag": 85,
+    "tx_count_7d_customer": 93,
+    "tx_sum_7d_customer": 93,
+    "distinct_merchants_7d_customer": 80,
+    "distinct_devices_7d_customer": 75,
+    "tx_count_7d_merchant": 90,
+    "distinct_customers_7d_merchant": 89,
+    "chargeback_rate_merchant": 100,
+    "distinct_customers_7d_device": 70,
+    "distinct_customers_7d_ip": 35
+  },
+  "feature_dataset_ref": "features/feature_table.parquet",
+  "blocking_issues": [],
+  "warnings": [
+    "High null rate in transactions.auth_3ds, eci, and pix_flow may affect ecommerce_no_3ds_flag coverage",
+    "High null rate in ip_proxy_vpn_tor column; ip entity features coverage limited",
+    "merchant.owner_customer_id has 65.1% nulls, no owner fallback applied"
+  ],
+  "assumptions": [
+    "Referential integrity maintained for sender_id and receiver_id between tables",
+    "Income from kyc_profiles relates to sender for income_ratio",
+    "Device reuse and IP reuse feature derivation skipped due to absence of detailed usage events",
+    "Cross-border flag uses available country fields for sender, receiver and IP"
+  ],
+  "provenance": {
+    "input_folder": "trusted",
+    "output_folder": "features",
+    "processed_at": "2026-03-13T16:59:32.833890+00:00"
+  }
+}

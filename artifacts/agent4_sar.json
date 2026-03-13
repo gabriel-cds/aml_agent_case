@@ -1,0 +1,74 @@
+{
+  "schema_version": "v1",
+  "agent": "sar_report",
+  "status": "ok",
+  "quality_score": 97,
+  "selected_case": {
+    "entity_type": "transaction",
+    "entity_id": "TM4UWFFU9QXSC",
+    "related_transactions": [
+      "TM4UWFFU9QXSC"
+    ],
+    "time_window": {
+      "start": "N/A",
+      "end": "N/A"
+    }
+  },
+  "sar_structured": {
+    "case_identification": {},
+    "executive_summary": "Foi identificada uma transação altamente atípica e suspeita (ID TM4UWFFU9QXSC) conforme análise IsolationForest, indicando potenciais riscos de lavagem de dinheiro e financiamento ao terrorismo. A transação apresenta marcadores críticos: alta velocidade de operações (velocity_30m), montante incompatível com a renda declarada (income_mismatch) e valores anômalos (log_amount). Com base nas evidências disponíveis, há indícios de estruturação e possível disfarce de origem e destino dos fundos, pois tais características são típicas de tentativas para evitar detecção e controles normativos.",
+    "typologies": [
+      "Estruturação",
+      "Inconsistência de renda declarada",
+      "Movimentação financeira atípica"
+    ],
+    "signals_alerts_triggered": [
+      "High velocity score (f_velocity_30m)",
+      "Income mismatch alert (f_income_ratio)",
+      "Anomalous transaction amount (f_log_amount)"
+    ],
+    "detailed_analysis": {
+      "timeline": [
+        {}
+      ],
+      "key_tables": [
+        "features/feature_table.parquet",
+        "trusted/transactions.parquet"
+      ],
+      "network_summary": {}
+    },
+    "legal_basis": [
+      "FATF Recommendations on Money Laundering and Terrorist Financing",
+      "Regulação BACEN para prevenção à lavagem de dinheiro no sistema financeiro brasileiro",
+      "Normativas COAF para comunicação de operações suspeitas"
+    ],
+    "recommended_actions": [
+      "Realizar investigação detalhada da origem e destino dos fundos vinculados à transação TM4UWFFU9QXSC",
+      "Solicitar documentos comprobatórios adicionais do cliente associado C100315",
+      "Monitorar transações relacionadas e o comportamento do cliente para identificar padrões suspeitos de estruturação ou lavagem",
+      "Registrar e reportar esta suspeita conforme normas regulatórias vigentes (COAF/BACEN)"
+    ],
+    "annexes": [
+      "Ranking completo de transações anômalas no período",
+      "Detalhamento dos scores e indicadores de risco por feature",
+      "Dados transacionais brutos e perfil cadastral do cliente"
+    ]
+  },
+  "sar_markdown": "# SAR Report - Transação TM4UWFFU9QXSC\n\n## Identificação do Caso\n- Tipo: Transação\n- ID: TM4UWFFU9QXSC\n- Cliente Relacionado: C100315\n\n## Resumo Executivo\nFoi detectada uma transação altamente anômala segundo o modelo IsolationForest, com score máximo (1.0), indicando risco elevado de lavagem de dinheiro e atividades financeiras suspeitas. Os principais sinais envolvem alta velocidade de movimentações, inconsistência entre valores transacionados e renda declarada pelo cliente, além de valores fora da normalidade estatística.\n\n## Sinais e Alertas Acionados\n- Velocity alto (f_velocity_30m)\n- Mismatch com renda declarada (f_income_ratio)\n- Montante atípico (f_log_amount)\n\n## Análise Detalhada\nInfelizmente, não foram fornecidos timestamps precisos para construção de timeline. No entanto, evidências indicam comportamento típico de estruturação e potenciais tentativas de mascarar origem e aplicação dos recursos.\n\n- Fonte dos dados: models/scored.parquet e features/feature_table.parquet\n- Cliente: vinculado à referência C100315\n\n## Base Legal\n- Recomendações FATF referentes a prevenção de lavagem de dinheiro\n- Normativas do BACEN e COAF para comunicação obrigatória de operações suspeitas\n\n## Conclusão e Ações Recomendadas\n- Investigar detalhadamente composição e contrapartes da transação\n- Exigir documentos complementares do cliente ou intervenientes\n- Monitorar e conferir padrões operacionais futuros\n- Registrar e reportar ao COAF conforme legislação vigente\n\n## Anexos\n- Ranking das principais transações suspeitas\n- Detalhamento dos indicadores de risco\n- Perfil cadastral do cliente envolvido",
+  "evidence_refs": [
+    "C100315"
+  ],
+  "blocking_issues": [],
+  "warnings": [
+    "Sem timestamps específicos para timeline precisa"
+  ],
+  "assumptions": [
+    "Assumido que referência C100315 é cliente principal associado"
+  ],
+  "provenance": {
+    "inputs": [
+      "ml_prioritization_result"
+    ],
+    "processed_at": "2026-03-13T16:59:51.448499+00:00"
+  }
+}

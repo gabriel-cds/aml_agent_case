@@ -1,0 +1,1142 @@
+{
+  "schema_version": "v1",
+  "agent": "ml_prioritization",
+  "status": "ok",
+  "quality_score": 100,
+  "ranking_scope": "transaction",
+  "target_definition": "Unsupervised anomaly score (no labels). Higher risk_score => more anomalous behavior.",
+  "model": {
+    "type": "IsolationForest",
+    "version": "v1",
+    "notes": "StandardScaler + IsolationForest; explain_short uses z-score heuristics."
+  },
+  "validation": {
+    "strategy": "no_labels_anomaly_scoring",
+    "metrics": {
+      "score_distribution": {
+        "min": 9.615384615384615e-05,
+        "p50": 0.49999038461538464,
+        "p95": 0.9499615384615384,
+        "max": 1.0
+      },
+      "note": "Sem labels; métricas supervisionadas não aplicáveis. Distribuição de score reportada."
+    },
+    "operational_threshold": {
+      "rule": "top_1_percent",
+      "expected_review_volume_per_day": 50
+    }
+  },
+  "ranked_list": [
+    {
+      "rank": 1,
+      "entity_type": "transaction",
+      "entity_id": "TM4UWFFU9QXSC",
+      "risk_score": 1.0,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_velocity_30m, f_log_amount, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_velocity_30m",
+          "f_log_amount",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100315"
+        ]
+      }
+    },
+    {
+      "rank": 2,
+      "entity_type": "transaction",
+      "entity_id": "TJ4JI714QAERN",
+      "risk_score": 0.9999807692307693,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_velocity_30m, f_log_amount, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_velocity_30m",
+          "f_log_amount",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100491"
+        ]
+      }
+    },
+    {
+      "rank": 3,
+      "entity_type": "transaction",
+      "entity_id": "TOHG8FE39U229",
+      "risk_score": 0.9999615384615385,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_velocity_30m, f_log_amount, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_velocity_30m",
+          "f_log_amount",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C101851"
+        ]
+      }
+    },
+    {
+      "rank": 4,
+      "entity_type": "transaction",
+      "entity_id": "TFUSJ17FFJNEZ",
+      "risk_score": 0.9999423076923077,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_velocity_30m, f_log_amount, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_velocity_30m",
+          "f_log_amount",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100068"
+        ]
+      }
+    },
+    {
+      "rank": 5,
+      "entity_type": "transaction",
+      "entity_id": "T4ACGI89UY834",
+      "risk_score": 0.9999230769230769,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_velocity_30m, f_log_amount, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_velocity_30m",
+          "f_log_amount",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C102074"
+        ]
+      }
+    },
+    {
+      "rank": 6,
+      "entity_type": "transaction",
+      "entity_id": "TX1AX4ICKSRJK",
+      "risk_score": 0.9999038461538462,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_velocity_30m, f_log_amount, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_velocity_30m",
+          "f_log_amount",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100880"
+        ]
+      }
+    },
+    {
+      "rank": 7,
+      "entity_type": "transaction",
+      "entity_id": "TP9LSJ3IEMERJ",
+      "risk_score": 0.9998846153846154,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_velocity_30m, f_log_amount, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_velocity_30m",
+          "f_log_amount",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C102232"
+        ]
+      }
+    },
+    {
+      "rank": 8,
+      "entity_type": "transaction",
+      "entity_id": "TTCLSQ58RIV8T",
+      "risk_score": 0.9998653846153847,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_velocity_30m, f_log_amount, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_velocity_30m",
+          "f_log_amount",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C101083"
+        ]
+      }
+    },
+    {
+      "rank": 9,
+      "entity_type": "transaction",
+      "entity_id": "T808ZO5WBQ1B6",
+      "risk_score": 0.9998461538461538,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_velocity_30m, f_log_amount, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_velocity_30m",
+          "f_log_amount",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C102408"
+        ]
+      }
+    },
+    {
+      "rank": 10,
+      "entity_type": "transaction",
+      "entity_id": "TSC9R9S786QAZ",
+      "risk_score": 0.9998269230769231,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_velocity_30m, f_log_amount, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_velocity_30m",
+          "f_log_amount",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100496"
+        ]
+      }
+    },
+    {
+      "rank": 11,
+      "entity_type": "transaction",
+      "entity_id": "TQRFHUNJ1PWRJ",
+      "risk_score": 0.9997307692307692,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C102175"
+        ]
+      }
+    },
+    {
+      "rank": 12,
+      "entity_type": "transaction",
+      "entity_id": "TDZUJIRP65QTQ",
+      "risk_score": 0.9997307692307692,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C101523"
+        ]
+      }
+    },
+    {
+      "rank": 13,
+      "entity_type": "transaction",
+      "entity_id": "TPHONXATUNKT7",
+      "risk_score": 0.9997307692307692,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100766"
+        ]
+      }
+    },
+    {
+      "rank": 14,
+      "entity_type": "transaction",
+      "entity_id": "T2QMO9D1O9USF",
+      "risk_score": 0.9997307692307692,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "M200398"
+        ]
+      }
+    },
+    {
+      "rank": 15,
+      "entity_type": "transaction",
+      "entity_id": "TMSZ3M2S04QHP",
+      "risk_score": 0.9997307692307692,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C102078"
+        ]
+      }
+    },
+    {
+      "rank": 16,
+      "entity_type": "transaction",
+      "entity_id": "TJWS8TAIU6QRZ",
+      "risk_score": 0.9997307692307692,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "M200874"
+        ]
+      }
+    },
+    {
+      "rank": 17,
+      "entity_type": "transaction",
+      "entity_id": "TN9B6GYSWMWCD",
+      "risk_score": 0.9997307692307692,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100922"
+        ]
+      }
+    },
+    {
+      "rank": 18,
+      "entity_type": "transaction",
+      "entity_id": "TVUOJ1I45DPLW",
+      "risk_score": 0.9997307692307692,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C102149"
+        ]
+      }
+    },
+    {
+      "rank": 19,
+      "entity_type": "transaction",
+      "entity_id": "TVNZCVBWSX3GX",
+      "risk_score": 0.9997307692307692,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100977"
+        ]
+      }
+    },
+    {
+      "rank": 20,
+      "entity_type": "transaction",
+      "entity_id": "TBDJZ14BAP4F2",
+      "risk_score": 0.9996346153846154,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C101461"
+        ]
+      }
+    },
+    {
+      "rank": 21,
+      "entity_type": "transaction",
+      "entity_id": "TAE3YY64QBJDQ",
+      "risk_score": 0.9996153846153846,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_velocity_30m, f_log_amount, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_velocity_30m",
+          "f_log_amount",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C101597"
+        ]
+      }
+    },
+    {
+      "rank": 22,
+      "entity_type": "transaction",
+      "entity_id": "T04771BDRLH64",
+      "risk_score": 0.9995961538461539,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "M200252"
+        ]
+      }
+    },
+    {
+      "rank": 23,
+      "entity_type": "transaction",
+      "entity_id": "T9YMP6XC97HM0",
+      "risk_score": 0.9994903846153846,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C101595"
+        ]
+      }
+    },
+    {
+      "rank": 24,
+      "entity_type": "transaction",
+      "entity_id": "TSFBYSDK4OHYP",
+      "risk_score": 0.9994903846153846,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100054"
+        ]
+      }
+    },
+    {
+      "rank": 25,
+      "entity_type": "transaction",
+      "entity_id": "T35U775Y32FFT",
+      "risk_score": 0.9994903846153846,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100117"
+        ]
+      }
+    },
+    {
+      "rank": 26,
+      "entity_type": "transaction",
+      "entity_id": "TF05YAPKTP4TU",
+      "risk_score": 0.9994903846153846,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100939"
+        ]
+      }
+    },
+    {
+      "rank": 27,
+      "entity_type": "transaction",
+      "entity_id": "TMADF38QKY1W4",
+      "risk_score": 0.9994903846153846,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C102478"
+        ]
+      }
+    },
+    {
+      "rank": 28,
+      "entity_type": "transaction",
+      "entity_id": "TFHBTR9BTJC78",
+      "risk_score": 0.9994903846153846,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C102071"
+        ]
+      }
+    },
+    {
+      "rank": 29,
+      "entity_type": "transaction",
+      "entity_id": "TJZO9Q79G3IGV",
+      "risk_score": 0.9994903846153846,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C101120"
+        ]
+      }
+    },
+    {
+      "rank": 30,
+      "entity_type": "transaction",
+      "entity_id": "TD9QDKUN21DRE",
+      "risk_score": 0.9994903846153846,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C102130"
+        ]
+      }
+    },
+    {
+      "rank": 31,
+      "entity_type": "transaction",
+      "entity_id": "TC5IVMKBWJV72",
+      "risk_score": 0.9994903846153846,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C101853"
+        ]
+      }
+    },
+    {
+      "rank": 32,
+      "entity_type": "transaction",
+      "entity_id": "TNPS88I9GVH10",
+      "risk_score": 0.9994903846153846,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100575"
+        ]
+      }
+    },
+    {
+      "rank": 33,
+      "entity_type": "transaction",
+      "entity_id": "TNZHHP8JIKU7R",
+      "risk_score": 0.9993365384615385,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C101108"
+        ]
+      }
+    },
+    {
+      "rank": 34,
+      "entity_type": "transaction",
+      "entity_id": "TQ4XNYN46L5I5",
+      "risk_score": 0.9993365384615385,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100513"
+        ]
+      }
+    },
+    {
+      "rank": 35,
+      "entity_type": "transaction",
+      "entity_id": "T2XQ9QS7W9ICN",
+      "risk_score": 0.9993365384615385,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "M200127"
+        ]
+      }
+    },
+    {
+      "rank": 36,
+      "entity_type": "transaction",
+      "entity_id": "T6C0T5LEJIVKE",
+      "risk_score": 0.9993365384615385,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100294"
+        ]
+      }
+    },
+    {
+      "rank": 37,
+      "entity_type": "transaction",
+      "entity_id": "T9K8PW9I0I9WY",
+      "risk_score": 0.9993365384615385,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C101724"
+        ]
+      }
+    },
+    {
+      "rank": 38,
+      "entity_type": "transaction",
+      "entity_id": "TSGCWCKIW80KN",
+      "risk_score": 0.9993365384615385,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C101800"
+        ]
+      }
+    },
+    {
+      "rank": 39,
+      "entity_type": "transaction",
+      "entity_id": "TFRV02TQBTSAE",
+      "risk_score": 0.9991923076923077,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100327"
+        ]
+      }
+    },
+    {
+      "rank": 40,
+      "entity_type": "transaction",
+      "entity_id": "TKY5BM57QFEWV",
+      "risk_score": 0.9991923076923077,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C102247"
+        ]
+      }
+    },
+    {
+      "rank": 41,
+      "entity_type": "transaction",
+      "entity_id": "THNZCXDE1DD94",
+      "risk_score": 0.9991923076923077,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C101276"
+        ]
+      }
+    },
+    {
+      "rank": 42,
+      "entity_type": "transaction",
+      "entity_id": "TEI875SULB85O",
+      "risk_score": 0.9991923076923077,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C101631"
+        ]
+      }
+    },
+    {
+      "rank": 43,
+      "entity_type": "transaction",
+      "entity_id": "TNVCSNADRX431",
+      "risk_score": 0.9991923076923077,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100040"
+        ]
+      }
+    },
+    {
+      "rank": 44,
+      "entity_type": "transaction",
+      "entity_id": "TJGWDRMAVXQ5N",
+      "risk_score": 0.9991923076923077,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C101038"
+        ]
+      }
+    },
+    {
+      "rank": 45,
+      "entity_type": "transaction",
+      "entity_id": "TZBK9OMGN5F55",
+      "risk_score": 0.9991923076923077,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100168"
+        ]
+      }
+    },
+    {
+      "rank": 46,
+      "entity_type": "transaction",
+      "entity_id": "TEWZLEQT8I480",
+      "risk_score": 0.9991923076923077,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100483"
+        ]
+      }
+    },
+    {
+      "rank": 47,
+      "entity_type": "transaction",
+      "entity_id": "T89R3Q2RPN56J",
+      "risk_score": 0.9991923076923077,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C102057"
+        ]
+      }
+    },
+    {
+      "rank": 48,
+      "entity_type": "transaction",
+      "entity_id": "TI9FBZ11PCWNV",
+      "risk_score": 0.9990673076923077,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C102376"
+        ]
+      }
+    },
+    {
+      "rank": 49,
+      "entity_type": "transaction",
+      "entity_id": "TDC20H0BMU82X",
+      "risk_score": 0.9990673076923077,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100585"
+        ]
+      }
+    },
+    {
+      "rank": 50,
+      "entity_type": "transaction",
+      "entity_id": "TXWY04RE0WRYG",
+      "risk_score": 0.9990673076923077,
+      "risk_tags": [
+        "velocity",
+        "income_mismatch"
+      ],
+      "explain_short": "Anomalia (sem labels) priorizada por IsolationForest. Principais drivers heurísticos (z-score): f_log_amount, f_velocity_30m, f_income_ratio.",
+      "evidence_refs": {
+        "feature_names": [
+          "f_log_amount",
+          "f_velocity_30m",
+          "f_income_ratio"
+        ],
+        "time_window": "N/A",
+        "related_ids": [
+          "C100506"
+        ]
+      }
+    }
+  ],
+  "artifacts": {
+    "model_ref": "models\\model.pkl",
+    "scored_dataset_ref": "models\\scored.parquet"
+  },
+  "blocking_issues": [],
+  "warnings": [],
+  "assumptions": [],
+  "provenance": {
+    "input_folder": "features",
+    "processed_at": "2026-03-13T16:59:51.443926+00:00"
+  }
+}

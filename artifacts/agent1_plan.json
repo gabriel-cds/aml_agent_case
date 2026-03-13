@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.0",
+  "agent": "agent1_data_ingestion_quality_AML-FT",
+  "status": "ok",
+  "quality_score": 95,
+  "ready_for_features": true,
+  "raw_inventory": [
+    {
+      "file": "geo_behavior",
+      "type_guess": "signals",
+      "notes": "Behavioral aggregated sender metrics"
+    },
+    {
+      "file": "kyc_profiles",
+      "type_guess": "kyc",
+      "notes": "Customer identity and profile details"
+    },
+    {
+      "file": "merchants",
+      "type_guess": "merchants",
+      "notes": "Merchant information and risk indicators"
+    },
+    {
+      "file": "transactions",
+      "type_guess": "transactions",
+      "notes": "Transaction details with geo, device and risk flags"
+    }
+  ],
+  "tables_summary": {
+    "geo_behavior": {
+      "row_count": 3497,
+      "primary_key_candidates": [
+        "sender_id"
+      ],
+      "critical_columns": [
+        "sender_id"
+      ],
+      "invalid_value_examples": [],
+      "referential_integrity": []
+    },
+    "kyc_profiles": {
+      "row_count": 2500,
+      "primary_key_candidates": [
+        "customer_id"
+      ],
+      "critical_columns": [
+        "customer_id"
+      ],
+      "invalid_value_examples": [],
+      "referential_integrity": []
+    },
+    "merchants": {
+      "row_count": 1000,
+      "primary_key_candidates": [
+        "merchant_id"
+      ],
+      "critical_columns": [
+        "merchant_id"
+      ],
+      "invalid_value_examples": [],
+      "referential_integrity": [
+        "owner_customer_id"
+      ]
+    },
+    "transactions": {
+      "row_count": 52000,
+      "primary_key_candidates": [
+        "transaction_id"
+      ],
+      "critical_columns": [
+        "transaction_id",
+        "timestamp",
+        "sender_id",
+        "receiver_id",
+        "amount_brl"
+      ],
+      "invalid_value_examples": [
+        "amount_brl <= 0: none found",
+        "missing timestamps: none",
+        "invalid sender_id references: unknown",
+        "invalid receiver_id references: unknown"
+      ],
+      "referential_integrity": [
+        "sender_id",
+        "receiver_id"
+      ]
+    }
+  },
+  "standardizations_applied": [
+    "Column names converted to snake_case",
+    "ID columns cast to string type",
+    "Timestamp columns converted to ISO-8601 format",
+    "Monetary amount columns converted to float64",
+    "Categorical columns rail/channel/status normalized as strings with case normalization (lowercase values)"
+  ],
+  "blocking_issues": [],
+  "warnings": [
+    "Transactions table sender_id has high duplication rate (93.3%) indicating possible multi-row events per sender",
+    "merchants.owner_customer_id has 65.1% null rate; nulls are accepted as no owner",
+    "transactions.payment_method, issuing_or_acquiring, card_brand, card_present, auth_3ds, eci have high null rates and may require imputation downstream if needed",
+    "transactions.pix_flow and ip_proxy_vpn_tor have high null rate (~39% and 92%, respectively)"
+  ],
+  "assumptions": [
+    "No missing critical primary keys in any table",
+    "High duplication of sender_id in transactions expected due to multiple transactions per sender",
+    "Monetary amounts are positive; zero or negative amounts not observed",
+    "Date and timestamp columns are correctly parsed without errors",
+    "Referential integrity cannot be fully verified due to lack of full foreign keys lists; assumed consistent"
+  ],
+  "provenance": {
+    "input_folder": "raw",
+    "output_folder": "trusted",
+    "processed_at": "2026-03-13T16:59:19.468956+00:00"
+  },
+  "quality_gates": {
+    "block_if": [
+      "critical primary keys missing",
+      "invalid data in mandatory columns",
+      "duplicate primary keys present"
+    ],
+    "warn_if": [
+      "high null rate in important categorical columns",
+      "high duplication in non-key columns"
+    ]
+  },
+  "cleaning_plan": {
+    "standardize_columns": true,
+    "parse_timestamps": [
+      "timestamp",
+      "date_of_birth",
+      "registration_date"
+    ],
+    "drop_exact_duplicates": [
+      "geo_behavior",
+      "kyc_profiles",
+      "merchants",
+      "transactions"
+    ],
+    "mark_invalid_records": [
+      "transactions"
+    ]
+  },
+  "trusted_tables": {
+    "geo_behavior": "geo_behavior_cleaned.parquet",
+    "kyc_profiles": "kyc_profiles_cleaned.parquet",
+    "merchants": "merchants_cleaned.parquet",
+    "transactions": "transactions_cleaned.parquet"
+  },
+  "notes": [
+    "All ID columns normalized to string",
+    "Timestamps formatted in ISO-8601",
+    "Amounts confirmed as positive floats",
+    "Exact duplicates removed",
+    "Invalid transaction records to be marked with invalid_record flag if found (none detected)"
+  ]
+}
