@@ -30,6 +30,7 @@ Cada agente executa uma etapa específica do pipeline AML, permitindo modularida
 ├── raw/                       # Dados brutos
 ├── trusted/                   # Dados confiáveis e processados
 ```
+Observação: Apenas a pasta `raw` e o arquivo `agent.ipynb` existem inicialmente no repositório. As demais pastas (artifacts, features, models, trusted) são criadas automaticamente durante a execução do projeto.
 
 ## 4. Como Executar
 
