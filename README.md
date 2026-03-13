@@ -58,7 +58,7 @@ Cada agente executa uma etapa específica do pipeline AML, permitindo modularida
 	```bash
 	pip install -r requirements.txt
 	```
-4. Substitua a chave de API no arquivo `.env` pela sua chave da OpenAI:
+4. Substitua a chave de API genérica no arquivo `.env` pela sua chave da OpenAI:
    - Abra o arquivo `.env` na raiz do projeto.
    - Localize a linha referente à chave da OpenAI (por exemplo, `OPENAI_API_KEY=...`).
    - Substitua pelo valor da sua chave pessoal.
